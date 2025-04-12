@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projeto Avaliativo - Mini E-commerce
 
-## Getting Started
+Olá, pessoal! Tudo certo?
 
-First, run the development server:
+Chegamos à etapa do **primeiro projeto avaliativo** da disciplina.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Objetivo
+Criar um **mini e-commerce**, aplicando os conceitos vistos em aula: rotas, componentes, consumo de API e manipulação de dados.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Você pode criar um projeto novo ou utilizar um que já esteja em andamento.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Etapas do Projeto
 
-## Learn More
+### 1. Criar uma rota de listagem de produtos
+- Dentro da pasta `api`, crie uma nova pasta.
+- Dentro dela, crie o arquivo `route.js`.
+- No `route.js`, crie uma **lista de produtos** e uma **função que retorne os dados em JSON**.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Criar um componente para listar os produtos
+- Fora da pasta `api`, crie um componente React para exibir a lista de produtos.
+- O componente deve ser **assíncrono** e utilizar `fetch` para buscar os dados.
+- Use `map()` para exibir os produtos.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Adicionar links para detalhes dos produtos
+- No `map()`, insira um **link em cada item** para direcionar o usuário aos detalhes do produto.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Criar a rota dinâmica de detalhes
+- Crie uma pasta com o nome da rota (ex: `product`).
+- Dentro, crie uma pasta com o nome do parâmetro entre colchetes (ex: `[id]`).
+- Crie o arquivo `page.js` dentro dessa pasta.
+- Exiba todas as **informações do produto selecionado**.
 
-## Deploy on Vercel
+### 5. Integrar com o Mercado Pago
+- Crie ou utilize um componente para fazer o **pagamento com o Mercado Pago** na página de detalhes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 6. Criar o layout principal da aplicação
+- No arquivo `page.js` da pasta `app`, monte o layout com:
+  - Header
+  - Carrossel de banners
