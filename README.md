@@ -39,3 +39,13 @@ Você pode criar um projeto novo ou utilizar um que já esteja em andamento.
 - No arquivo `page.js` da pasta `app`, monte o layout com:
   - Header
   - Carrossel de banners
+  - Lista de produtos
+  - Footer
+
+---
+
+## 💡 Dica: Carrossel
+Para instalar o carrossel:
+
+```bash
+npm i react-responsive-carousel
