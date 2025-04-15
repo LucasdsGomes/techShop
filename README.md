@@ -1,51 +1,74 @@
-# Projeto Avaliativo - Mini E-commerce
+# 🛒 E-Commerce FakeStore — Projeto Avaliativo
+Este é um projeto de loja online responsiva desenvolvido como atividade avaliativa para a faculdade. O principal objetivo foi criar um e-commerce funcional consumindo dados da FakeStoreAPI e integrando o sistema de pagamento via Mercado Pago API.
 
-Olá, pessoal! Tudo certo?
+# 💡 Objetivo
+Criar uma aplicação web de e-commerce que:
 
-Chegamos à etapa do **primeiro projeto avaliativo** da disciplina.
+- Exibe produtos consumidos de uma API pública.
 
-## 🎯 Objetivo
-Criar um **mini e-commerce**, aplicando os conceitos vistos em aula: rotas, componentes, consumo de API e manipulação de dados.
+- Permite visualizar detalhes individuais de cada produto.
 
-Você pode criar um projeto novo ou utilizar um que já esteja em andamento.
+- Integra pagamento real com a API do Mercado Pago.
 
----
+- Adota design responsivo com o auxílio do TailwindCSS.
 
-## 🚀 Etapas do Projeto
+# 🚀 Tecnologias Utilizadas
+- HTML5
 
-### 1. Criar uma rota de listagem de produtos
-- Dentro da pasta `api`, crie uma nova pasta.
-- Dentro dela, crie o arquivo `route.js`.
-- No `route.js`, crie uma **lista de produtos** e uma **função que retorne os dados em JSON**.
+- JavaScript
 
-### 2. Criar um componente para listar os produtos
-- Fora da pasta `api`, crie um componente React para exibir a lista de produtos.
-- O componente deve ser **assíncrono** e utilizar `fetch` para buscar os dados.
-- Use `map()` para exibir os produtos.
+- TailwindCSS — para o design responsivo.
 
-### 3. Adicionar links para detalhes dos produtos
-- No `map()`, insira um **link em cada item** para direcionar o usuário aos detalhes do produto.
+- FakeStoreAPI — para dados de produtos.
 
-### 4. Criar a rota dinâmica de detalhes
-- Crie uma pasta com o nome da rota (ex: `product`).
-- Dentro, crie uma pasta com o nome do parâmetro entre colchetes (ex: `[id]`).
-- Crie o arquivo `page.js` dentro dessa pasta.
-- Exiba todas as **informações do produto selecionado**.
+- Mercado Pago API — para checkout de pagamentos.
 
-### 5. Integrar com o Mercado Pago
-- Crie ou utilize um componente para fazer o **pagamento com o Mercado Pago** na página de detalhes.
+# ⚙️ Funcionalidades
+- 🏠 Página Inicial com listagem de produtos.
 
-### 6. Criar o layout principal da aplicação
-- No arquivo `page.js` da pasta `app`, monte o layout com:
-  - Header
-  - Carrossel de banners
-  - Lista de produtos
-  - Footer
+- 🔍 Detalhes do Produto — cada item acessível via URL com ID.
 
----
+- 💳 Sistema de Pagamento — integração com Mercado Pago.
 
-## 💡 Dica: Carrossel
-Para instalar o carrossel:
+- 📱 Design Responsivo — adaptável para desktop, tablets e smartphones.
 
-```bash
-npm i react-responsive-carousel
+# 🔗 Como Rodar o Projeto
+Clone o repositório:
+git clone https://github.com/seu-usuario/seu-repositorio.git
+
+
+Instale as dependências (caso use build):
+npm install
+
+
+- Configure a API do Mercado Pago:
+Adicione sua chave pública e privada no arquivo de configuração (.env ou direto no código, conforme implementação).
+
+
+Rode o projeto localmente:
+npm run dev
+Ou simplesmente abra o index.html no navegador se for puro HTML/JS.
+
+
+# 💳 Sobre o Pagamento
+O sistema de pagamento foi integrado utilizando a API oficial do Mercado Pago.
+
+O processo de checkout simula uma compra real, sendo ideal para testes com contas sandbox.
+
+
+# 📸 Prints
+(Adicione aqui algumas imagens demonstrando as páginas do projeto.)
+
+
+# 👨‍🎓 Sobre o Projeto
+Este projeto foi desenvolvido como parte de uma atividade acadêmica com foco em:
+
+- Consumo de APIs REST.
+
+- Integração de serviços de pagamento.
+
+- Boas práticas de design responsivo.
+
+- Organização de código front-end.
+
+
