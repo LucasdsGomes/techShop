@@ -57,7 +57,14 @@ O processo de checkout simula uma compra real, sendo ideal para testes com conta
 
 
 # 📸 Prints
-(Adicione aqui algumas imagens demonstrando as páginas do projeto.)
+![image](https://github.com/user-attachments/assets/a91ac16a-8e89-441f-9ac8-67373fc21d31)
+
+![image](https://github.com/user-attachments/assets/0b0addfc-55c7-4fe3-a645-0c8de0183270)
+
+![image](https://github.com/user-attachments/assets/d391157c-b5ba-4594-a671-85d327f041b7)
+
+![image](https://github.com/user-attachments/assets/73962080-3ecb-4fbd-bd61-9060f9eb11eb)
+
 
 
 # 👨‍🎓 Sobre o Projeto
