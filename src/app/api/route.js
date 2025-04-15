@@ -2,16 +2,19 @@ import mercadopago from "mercadopago";
 import { NextResponse } from "next/server";
 
 mercadopago.configure({
-    access_token: '',
+    access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
 });
 
-export async function POST(req, res) {
+export async function POST(req) {
     try {
-        const { title, price, quantity } = await req.json();
+        const { title, price, quantity} = await req.json();
         const preference = {
             items: [
                 { title, unit_price: price, quantity },
             ],
+            payer: {
+                email: "test_user_123456@testuser.com"
+            },
             back_urls: {
                 success: "http://localhost:3000/success",
                 failure: "http://localhost:3000/failure",

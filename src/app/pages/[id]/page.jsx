@@ -1,21 +1,20 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import axios from "axios";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import CheckoutButton from "../../components/CheckoutButton";
 
-export default function Home() {
-  const [produtos, setProdutos] = useState([]);
+export default function SeeMore({ params }) {
+  const { id } = use(params);
+  const [produto, setProduto] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => setProdutos(response.data))
-      .catch((error) => console.error("Erro ao buscar produtos:", error));
-  }, []);
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => setProduto(data));
+  }, [id]);
+
+  if (!produto) return <p>Carregando produto...</p>;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -90,212 +89,29 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="flex-grow">
-        <section className="relative">
-          <Carousel
-            showThumbs={false}
-            autoPlay
-            infiniteLoop={true}
-            interval={5000}
-            showStatus={false}
-            className="max-h-96"
-          >
-            <div className="relative h-64 md:h-96">
-              <img
-                src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*OLBBmwZWiKUNk685.png"
-                alt="Promoção de Smartphones"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center">
-                <div className="container mx-auto px-6 md:px-12">
-                  <h2 className="text-white text-3xl md:text-5xl font-bold mb-4">
-                    Grandes Ofertas em Tecnologia
-                  </h2>
-                  <p className="text-gray-200 text-lg md:text-xl mb-8">
-                    Até 40% de desconto nos melhores produtos
-                  </p>
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Ver Ofertas
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="relative h-64 md:h-96">
-              <img
-                src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*OLBBmwZWiKUNk685.png"
-                alt="Lançamentos Tech"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center">
-                <div className="container mx-auto px-6 md:px-12">
-                  <h2 className="text-white text-3xl md:text-5xl font-bold mb-4">
-                    Lançamentos Imperdíveis
-                  </h2>
-                  <p className="text-gray-200 text-lg md:text-xl mb-8">
-                    Conheça os produtos mais modernos do mercado
-                  </p>
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Explorar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Carousel>
-        </section>
+      <div className="p-8 max-w-2xl mx-auto">
+        <button
+          onClick={() => router.back()}
+          className="mb-4 inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors"
+        >
+          ← Voltar
+        </button>
+        <img
+          src={produto.image}
+          alt={produto.title}
+          className="w-full h-64 object-contain mb-4"
+        />
+        <h1 className="text-2xl font-bold mb-2">{produto.title}</h1>
+        <p className="text-gray-700 mb-4">{produto.description}</p>
+        <p className="text-xl font-bold mb-4">R$ {produto.price.toFixed(2)}</p>
 
-        <section className="py-12 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              Categorias em Destaque
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105">
-                <div className="h-28 bg-blue-100 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-blue-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-center">Smartphones</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105">
-                <div className="h-28 bg-green-100 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-center">Notebooks</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105">
-                <div className="h-28 bg-purple-100 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-purple-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-center">TVs & Áudio</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105">
-                <div className="h-28 bg-red-100 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-red-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-center">Smartwatches</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-2">
-              Produtos em Destaque
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Confira nossa seleção dos melhores produtos
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {produtos.map((produto) => (
-                <div
-                  key={produto.id}
-                  className="rounded overflow-hidden shadow-lg hover:shadow-2xl p-4 transition duration-300"
-                >
-                  <img
-                    src={produto.image}
-                    alt={produto.title}
-                    className="w-full h-48 object-contain mb-4"
-                  />
-                  <h3 className="font-bold text-lg mb-2">{produto.title}</h3>
-                  <p className="text-gray-600 mb-2">{produto.description}</p>
-                  <p className="text-lg font-bold">
-                    R$ {produto.price.toFixed(2)}
-                  </p>
-                  <div className="flex justify-center mt-4">
-                    <Link className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" href={`/pages/${produto.id}`}>
-                      Ver Mais
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-r from-purple-600 to-indigo-700 text-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">
-                Inscreva-se na nossa Newsletter
-              </h2>
-              <p className="text-purple-100 mb-8">
-                Receba ofertas exclusivas e novidades em primeira mão
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="email"
-                  placeholder="Seu melhor e-mail"
-                  className="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800"
-                />
-                <button className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-medium px-6 py-3 rounded-lg transition-colors">
-                  Inscrever-se
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+        <CheckoutButton
+          title={produto.title}
+          price={produto.price}
+          quantity={1}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+        />
+      </div>
 
       <footer className="bg-gray-900 text-white pt-12 pb-6">
         <div className="container mx-auto px-4">
@@ -446,7 +262,7 @@ export default function Home() {
                   <span className="text-gray-400">
                     Av. Tecnologia, 1000
                     <br />
-                    Nova Andradina - MS
+                    São Paulo - SP
                   </span>
                 </li>
                 <li className="flex items-center">
